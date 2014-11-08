@@ -3,10 +3,19 @@ kimsufi-alert
 
 Kimsufi alert will send you an email or SMS when an OVH kimsufi server is available for purchase.
 
+
+## node.js (required)
+
+	#mac
+	brew install node
+
+Other OS (windows, linux) should install from source found at http://nodejs.org
+
 ## install
 
     git clone git@github.com:chovy/kimsufi-alert.git
     cd kimsufi-alert
+    npm install
 
     # add a cronjob to periodically check
     crontab -e
