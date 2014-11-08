@@ -1,0 +1,44 @@
+{
+	"env": {
+		"smtp": {
+			"host": "smtp.gmail.com",
+			"port": 465,
+			"user": "SMTP_USER",
+			"pass": "SMTP_PASS"
+		},
+		"sms": {
+			"sid": "TWILIO_ACCOUNT_SID",
+			"auth": "TWILIO_AUTH_TOKEN"
+		}
+	},
+	"email": {
+		"from": "me@gmail.com",
+		"to": "me@gmail.com",
+		"subject": "Kimsufi alert",
+		"enabled": true
+	},
+	"sms": {
+		"to": "555-555-5555",
+		"from": "555-555-5551",
+		"enabled": false
+	},
+	"providers": ["kimsufi"],
+	"kimsufi": {
+		"servers": [
+			"KS-1",
+			"KS-2",
+			"KS-3",
+			"KS-4",
+			"KS-5A",
+			"KS-5B",
+			"KS-6"
+		],
+		"zones": [
+			"rbx",
+			"sbg",
+			"bhs",
+			"gra",
+			"par"
+		]
+	}
+}

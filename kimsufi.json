@@ -1,0 +1,19 @@
+{
+	"serverMap": {
+		"KS-1": "142sk1",
+		"KS-2": "142sk7",
+		"KS-3": "142sk3",
+		"KS-4": "142sk4",
+		"KS-5A": "142sk5",
+		"KS-5B": "142sk8",
+		"KS-6": "142sk6"
+	},
+	"zoneMap": {
+		"bhs": "Beauharnois, Canada (Americas)",
+		"gra": "Gravelines, France",
+		"rbx": "Roubaix, France (Western Europe)",
+		"sbg": "Strasbourg, France (Central Europe)",
+		"par": "Paris, France"
+	},
+	"api": "https://ws.ovh.com/dedicated/r2/ws.dispatcher/getAvailability2"
+}
