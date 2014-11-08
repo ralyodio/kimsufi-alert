@@ -57,8 +57,8 @@ https://github.com/andris9/nodemailer-wellknown/blob/master/services.json
 Set your SMTP user and password environment variables to receive email notifications:
 
 	# in ~/.bashrc
-	SMTP_USER=me@gmail.com
-	SMTP_PASS=xyz
+	export SMTP_USER=me@gmail.com
+	export SMTP_PASS=xyz
 	
 	# from command line execution (ie: crontab)
 	SMTP_USER=me@gmail.com SMTP_PASS=xyz ~/path/to/kimsufi-alert/index.js
@@ -66,8 +66,8 @@ Set your SMTP user and password environment variables to receive email notificat
 Set your SMS Twilio provider environment variables to receive sms notifications:
 
 	# in ~/.bashrc
-	TWILIO_ACCOUNT_SID=aaa
-	TWILIO_AUTH_TOKEN=bbb
+	export TWILIO_ACCOUNT_SID=aaa
+	export TWILIO_AUTH_TOKEN=bbb
 	
 	# from command line execution (ie: crontab)
 	TWILIO_ACCOUNT_SID=aaa TWILIO_AUTH_TOKEN=bbb ~/path/to/kimsufi-alert/index.js
