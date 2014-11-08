@@ -81,7 +81,7 @@ Best from a cronjob on periodic intervals:
 
 	cd kimsufi-alert
 	
-	#edit config.json first (copied from config.sample.json)
+	# edit config.json first (copied from config.sample.json)
 	
 	./index.js
 	
