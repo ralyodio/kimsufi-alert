@@ -125,7 +125,7 @@ function sendEmail(results){
 	var port = cfg.env.smtp.port;
 
 	if ( !user || !pass || !host || !port ) {
-		console.error('Please set set `SMTP_USER` and `SMTP_PASS` environment variables.');
+		console.error('Please set `SMTP_USER` and `SMTP_PASS` environment variables.');
 		return;
 	}
 
@@ -160,6 +160,11 @@ function sendSms(results){
 
 	var sid = process.env[cfg.env.sms.sid];
 	var auth = process.env[cfg.env.sms.auth];
+
+	if ( !sid || !auth ) {
+		console.error('Please set `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` environment variables.');
+		return;
+	}
 
 	var client = require('twilio')(sid, auth);
 	var text = getMessage(results);

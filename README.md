@@ -21,7 +21,7 @@ Other OS (windows, linux) should install from source found at http://nodejs.org
     crontab -e
 
     # add this line (runs every 5 minutes)
-    */5 * * * * /usr/local/bin/node ~/path/to/kimsufi-alert/index.js
+    */5 * * * * ~/.bashrc && ~/path/to/kimsufi-alert/index.js
 
 
 ## configure
@@ -90,7 +90,7 @@ Best from a cronjob on periodic intervals:
 	
 	# from crontab (must run node explicitly)
 	crontab -e
-	*/5 * * * * /usr/local/bin/node /path/to/kimsufi-alert/index.js
+	*/5 * * * * . ~/.bashrc && /path/to/kimsufi-alert/index.js
 
 Be default, `kimsufi-alert` will only send a notification if the results are different than the last run.
 This avoids getting spammed with email and sms every 5 minutes. 
