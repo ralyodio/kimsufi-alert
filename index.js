@@ -185,8 +185,8 @@ function sendSms(results){
 function saveJson(file, data, cb){
 	var dir = './tmp';
 
-	if (!fs.exists(dir)){
-		fs.mkdir(dir);
+	if (!fs.existsSync(dir)){
+		fs.mkdirSync(dir);
 	}
 
 	fs.writeFile(file+'.json', JSON.stringify(data), function(err) {
