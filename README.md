@@ -59,6 +59,7 @@ Set your SMTP user and password environment variables to receive email notificat
 	# in ~/.bashrc
 	export SMTP_USER=me@gmail.com
 	export SMTP_PASS=xyz
+	. ~/.bashrc
 	
 	# from command line execution (ie: crontab)
 	SMTP_USER=me@gmail.com SMTP_PASS=xyz ~/path/to/kimsufi-alert/index.js
