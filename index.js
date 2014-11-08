@@ -4,21 +4,29 @@ var request = require('request-promise');
 var _ = require('lodash');
 var nodemailer = require('nodemailer');
 var fs = require('fs');
+var hdiff = require('hdiff');
 
 var cfg = require('./config.json');
 var cmd = require('commander');
 var provider;
 
+//arguments
 cmd
 	.option('-p, --provider [type]', 'Server provider to run alerts for', 'kimsufi')
 	.option('-f, --force', 'Force a run regardless of last run', false)
+	.option('-d, --debug', 'Output debugging messages', false)
+	.option('-v, --verbose', 'A value that can be increased', increaseVerbosity, 0)
 	.parse(process.argv);
 
 //set provider
 provider = require('./'+cmd.provider+".json");
-console.dir(provider);
+if ( cmd.verbose > 2 ) console.dir(provider);
 
 check();
+
+function increaseVerbosity(v, total) {
+	return total + 1;
+}
 
 function check(){
 	request({ json: true, uri: provider.api })
@@ -28,6 +36,20 @@ function check(){
 		.catch(function(err){
 			console.error(err);
 		})
+}
+
+function isEqual(prev, curr){
+	//var isEq = JSON.stringify(prev) == JSON.stringify(curr) || _.isEqual(prev, curr);
+	var isEq = _.isEqual(prev, curr);
+
+	if ( cmd.verbose > 1 ) {
+		console.log('Previous:', prev);
+		console.log('Current: ', curr);
+	}
+
+	if ( cmd.verbose ) console.log('isEqual', isEq);
+
+	return isEq;
 }
 
 function parse(data){
@@ -41,8 +63,8 @@ function parse(data){
 
 	//save the results
 	getJson('./tmp/last-run', function(lastResults){
-		if ( !cmd.force && _.isEqual(results, lastResults) ) {
-			console.log('This run produced same results as last run.');
+		if ( !cmd.force && isEqual(lastResults, results) ) {
+			if ( cmd.verbose ) console.log('This run produced same results as last run.');
 			return;
 		}
 
@@ -151,7 +173,7 @@ function sendEmail(results){
 	transporter.sendMail(mailOptions, function(err, data){
 		if (err) return console.trace(err);
 
-		console.log('Email sent: ' + data.response);
+		if ( cmd.verbose ) console.log('Email sent: ' + data.response);
 	});
 }
 
@@ -182,7 +204,7 @@ function sendSms(results){
 		// A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
 		// http://www.twilio.com/docs/api/rest/sending-sms#example-1
 
-		console.log('SMS sent from: ', data.from); // outputs "+14506667788"
+		if ( cmd.verbose ) console.log('SMS sent from: ', data.from); // outputs "+14506667788"
 		//console.log(data.body); // outputs "word to your mother."
 	});
 }
@@ -208,7 +230,7 @@ function getJson(file, cb){
 	if (fs.existsSync(file+'.json')) {
 		var data = require(file+'.json');
 
-		console.log('Loaded last run from %s', file);
+		if ( cmd.verbose ) console.log('Loaded last run from %s', file);
 		return cb(data);
 	}
 

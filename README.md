@@ -21,7 +21,7 @@ Other OS (windows, linux) should install from source found at http://nodejs.org
     crontab -e
 
     # add this line (runs every 5 minutes)
-    */5 * * * * ~/.bashrc && ~/path/to/kimsufi-alert/index.js
+    */5 * * * * /usr/local/bin/node ~/path/to/kimsufi-alert/index.js
 
 
 ## configure
@@ -62,7 +62,7 @@ Set your SMTP user and password environment variables to receive email notificat
 	. ~/.bashrc
 	
 	# from command line execution (ie: crontab)
-	SMTP_USER=me@gmail.com SMTP_PASS=xyz ~/path/to/kimsufi-alert/index.js
+	SMTP_USER=me@gmail.com SMTP_PASS=xyz /usr/local/bin/node ~/path/to/kimsufi-alert/index.js
 
 Set your SMS Twilio provider environment variables to receive sms notifications:
 
@@ -71,7 +71,7 @@ Set your SMS Twilio provider environment variables to receive sms notifications:
 	export TWILIO_AUTH_TOKEN=bbb
 	
 	# from command line execution (ie: crontab)
-	TWILIO_ACCOUNT_SID=aaa TWILIO_AUTH_TOKEN=bbb ~/path/to/kimsufi-alert/index.js
+	TWILIO_ACCOUNT_SID=aaa TWILIO_AUTH_TOKEN=bbb /usr/local/bin/node ~/path/to/kimsufi-alert/index.js
 
 Twilio is the only SMS provider supported, they will give you a SEND FROM phone number, and you can then send to any phone number once you sign up.
 
@@ -90,7 +90,7 @@ Best from a cronjob on periodic intervals:
 	
 	# from crontab (must run node explicitly)
 	crontab -e
-	*/5 * * * * . ~/.bashrc && /path/to/kimsufi-alert/index.js
+	*/5 * * * * SMTP_USER=me@gmail.com SMTP_PASS=xyz TWILIO_ACCOUNT_SID=aaa TWILIO_AUTH_TOKEN=bbb /usr/local/bin/node /path/to/kimsufi-alert/index.js
 
 Be default, `kimsufi-alert` will only send a notification if the results are different than the last run.
 This avoids getting spammed with email and sms every 5 minutes. 
