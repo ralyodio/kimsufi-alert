@@ -30,7 +30,9 @@ Create a custom config file and edit as desired:
 
     cp config.sample.json config.json
     
-Be sure to update with your real smtp and sms settings. Either notification service can be disabled.    
+Be sure to update with your real smtp and sms settings. Either notification service can be disabled. 
+
+You can also remove/add your desired packages and zones to monitor in your custom config file (see list below).
 
 The host and port are hardcoded (not read from `process.env`).
 The other SMS details and SMTP credentials are taken from the environment (do not hardcode them in the config file).
